@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" re="INT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+	</group>
+</datatypes><table x="64" y="166" name="basins">
+<row name="basin_id" null="1" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+<default>NULL</default></row>
+<row name="basin_name" null="1" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR(25)</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="basin_id">
+<part>basin_id</part>
+</key>
+</table>
+<table x="224" y="203" name="data_header">
+<row name="record_id" null="1" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+<default>NULL</default></row>
+<row name="basin_id" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+<relation table="basins" row="basin_id" />
+</row>
+<row name="month_year" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<row name="draft" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+<default>NULL</default></row>
+<row name="submisson_date" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="highlights" null="1" autoincrement="0">
+<datatype>VARCHAR(100000)</datatype>
+<default>NULL</default></row>
+<row name="dm_geology" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="dm_seismic" null="1" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+<default>NULL</default></row>
+<row name="dm_welllogs" null="1" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+<default>NULL</default></row>
+<row name="dm_geochem" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="dm_geolab" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="dm_reserviour" null="1" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+<default>NULL</default></row>
+<row name="dm_production" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="dm_drilling" null="1" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+<default>NULL</default></row>
+<row name="software_activities" null="1" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+<default>NULL</default></row>
+<row name="other_activities" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="constraints" null="0" autoincrement="0">
+<datatype>VARCHAR(1000)</datatype>
+</row>
+<row name="remarks" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<key type="PRIMARY" name="record_id">
+<part>record_id</part>
+</key>
+<key type="INDEX" name="basin_id">
+<part>basin_id</part>
+</key>
+</table>
+<table x="276" y="20" name="sites">
+<row name="site_id" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+<relation table="data_sites" row="site_id" />
+</row>
+<row name="site_name" null="0" autoincrement="0">
+<datatype>VARCHAR(5)</datatype>
+</row>
+<row name="basin_id" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+</row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default></row>
+<key type="INDEX" name="basin_id">
+<part>basin_id</part>
+</key>
+<key type="PRIMARY" name="site_id">
+<part>site_id</part>
+</key>
+</table>
+<table x="501" y="100" name="data_sites">
+<row name="site_id" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+</row>
+<row name="record_id" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+<relation table="data_header" row="record_id" />
+</row>
+<row name="data_class" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="ubhi" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="ubhi_added_during_month" null="1" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+<default>NULL</default></row>
+<row name="total_volume" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="data_loaded_month" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="cumulative_data_loaded" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="cumulative_data_validated" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="data_gaps_identified" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="data_gaps_filled" null="0" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+</row>
+<row name="remarks" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<key type="INDEX" name="site_id">
+<part>site_id</part>
+</key>
+<key type="INDEX" name="record_id">
+<part>record_id</part>
+</key>
+</table>
+<table x="496" y="627" name="user_services_by_epinet">
+<row name="record_id" null="0" autoincrement="1">
+<datatype>INTEGER(5)</datatype>
+<relation table="data_header" row="record_id" />
+</row>
+<row name="ser_given_to_centre_name" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="class_subclass" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="volume_of_data_given" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+</row>
+<row name="unit_of_data_given" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default></row>
+<key type="INDEX" name="record_id">
+<part>record_id</part>
+</key>
+</table>
+<table x="496" y="463" name="user_service_online">
+<row name="class" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="record_id" null="1" autoincrement="0">
+<datatype>INTEGER(5)</datatype>
+<default>NULL</default><relation table="data_header" row="record_id" />
+</row>
+<row name="ser_given_to_centre_name" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="volume_of_data_taken" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+</row>
+<row name="unit_of_data" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+</row>
+<key type="INDEX" name="ser_given_of_data_taken">
+<part>ser_given_to_centre_name</part>
+</key>
+<key type="INDEX" name="record_id">
+<part>record_id</part>
+</key>
+</table>
+<table x="20" y="18" name="user">
+<row name="user_name" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="password" null="0" autoincrement="0">
+<datatype>VARCHAR(10)</datatype>
+</row>
+<row name="user_type" null="1" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>NULL</default></row>
+<row name="basin_id" null="0" autoincrement="0">
+<datatype>INTEGER(2)</datatype>
+<relation table="basins" row="basin_id" />
+</row>
+<key type="PRIMARY" name="user_name">
+<part>user_name</part>
+</key>
+<key type="INDEX" name="basin_id">
+<part>basin_id</part>
+</key>
+</table>
+</sql>

@@ -1,0 +1,57 @@
+Project layout
+==============
+
+header("Content-Disposition: attachment; Filename=MPR.doc");
+header("Content-type: application/vnd.ms-word");
+
+index.php - Main login page
+
+Prefix    :     Meaning
+======    :     ===============================================
+auth_     :     File related to authentication module
+db_       :     File interacts with DB and fetches/modifies records
+mpr_      :     Front-end files that will be displayed to user
+
+Files of login module
+=====================
+index.php - Login Input page
+auth_login.php - Performs login and redirects
+auth_session.php - Checks if logged in or not
+auth_logout.php - Performs logout
+
+--------------------------------------------------------------------------------
+
+->  Call "db_connect.php" for raw connection. It returns $connection
+->  For connection & session check, call "auth_session.php".
+    It creates connection also (as it calls "db_connect.php").
+    Hence no need to call "db_connect.php" in this case
+
+--------------------------------------------------------------------------------
+
+Query for selecting latest record of an user:
+SELECT * FROM `record_header` WHERE basin_id=1 ORDER BY record_id DESC LIMIT 1
+
+--------------------------------------------------------------------------------
+
+f_text[i].classList[1]
+* the second item in array tells which table data will be stored in
+
+--------------------------------------------------------------------------------
+
+"#waitmsg" sets the message to be displayed to user during AJAX request
+"#msg-response" is the message to display to user after an ajax response
+"#msg-class" to set class of message (alert, info, warning, success)
+"#msg-box" to toggle display of message
+
+https://datatables.net/download/index
+
+http://corymathews.com/saving-a-php-file-as-a-word-document/
+
+--------------------------------------------------------------------------------
+
+References
+==========
+[1] http://stackoverflow.com/questions/2870295/increment-date-by-one-month
+[2] http://stackoverflow.com/questions/4193916/how-to-set-textbox-value-in-jquery
+[3] http://stackoverflow.com/questions/5891840/how-to-use-javascript-variables-in-jquery-selectors
+[4] http://stackoverflow.com/questions/171027/add-table-row-in-jquery
